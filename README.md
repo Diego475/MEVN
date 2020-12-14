@@ -1,4 +1,4 @@
-# crud-mevn
+# My app test mevn
 
 ## Project setup
 ```
