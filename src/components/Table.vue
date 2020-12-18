@@ -84,10 +84,7 @@
             <th>{{ item.birth }}</th>
             <th>{{ item.age }}</th>
             <th>
-              <router-link
-                :to="{name: 'edit', params:{id: item.id, name: item.name}}"
-                class="btn btn-primary"
-              >
+              <router-link to="/edit/" class="btn btn-primary">
                 <i class="material-icons">edit</i>
               </router-link>
             </th>
@@ -165,6 +162,7 @@
 import NotFoundTable from "./NotFoundTable";
 import CaptionTable from "./subcomponents/CaptionTable";
 import TableHead from "./subcomponents/TableHead";
+import axios from "axios";
 
 export default {
   components: {
@@ -176,10 +174,11 @@ export default {
   people: [],
   data() {
     return {
+      info: [],
       date: [],
+
       people: [
         {
-          id: "1",
           surname: "Некрасов",
           name: "Петр",
           middle_name: "Антонович",
@@ -187,7 +186,6 @@ export default {
           age: "24",
         },
         {
-          id: "2",
           surname: "Игнатов",
           name: "Ефрем",
           middle_name: "Михайлович",
@@ -196,6 +194,11 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    axios
+      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .then((response) => (this.info = response));
   },
 };
 </script>

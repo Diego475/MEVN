@@ -7,17 +7,32 @@
       <div class="form-row">
         <div class="col">
           <label for="surname">Фамилия</label>
-          <input type="text" id="surname" v-bind:value="people[$route.params.id].surname" class="form-control" />
+          <input
+            type="text"
+            id="surname"
+            v-bind:value="people[$route.params.id].surname"
+            class="form-control"
+          />
         </div>
         <div class="col">
           <label for="name">Имя</label>
-          <input type="text" id="name" v-bind:value="people[$route.params.id].name" class="form-control" />
+          <input
+            type="text"
+            id="name"
+            v-bind:value="people[$route.params.id].name"
+            class="form-control"
+          />
         </div>
       </div>
       <div class="form-row">
         <div class="col">
           <label for="middle_name">Отчество</label>
-          <input type="text" id="middle_name" v-bind:value="people[$route.params.id].middle_name" class="form-control" />
+          <input
+            type="text"
+            id="middle_name"
+            v-bind:value="people[$route.params.id].middle_name"
+            class="form-control"
+          />
         </div>
         <div class="col">
           <label for="birth">Дата рождения</label>

@@ -11,6 +11,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  { path: '/edit/', redirect: '/' },
   {
     path: '/edit/:id',
     name: 'edit',
