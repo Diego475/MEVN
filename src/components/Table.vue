@@ -170,35 +170,19 @@ export default {
     CaptionTable,
     TableHead,
   },
-
-  people: [],
   data() {
     return {
-      info: [],
+      people: [],
       date: [],
-
-      people: [
-        {
-          surname: "Некрасов",
-          name: "Петр",
-          middle_name: "Антонович",
-          birth: "17.01.1996",
-          age: "24",
-        },
-        {
-          surname: "Игнатов",
-          name: "Ефрем",
-          middle_name: "Михайлович",
-          birth: "22.01.1996",
-          age: "22",
-        },
-      ],
     };
   },
   mounted() {
     axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-      .then((response) => (this.info = response));
+      .get("http://localhost:3000/api/user")
+      .then((res) => (this.people = res.data))
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
