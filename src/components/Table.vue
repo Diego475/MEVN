@@ -33,7 +33,8 @@
                       type="text"
                       class="form-control"
                       id="surname"
-                      v-model="form.surname"
+                      v-model="surname"
+                      name="username"
                     />
                   </div>
                   <div class="form-group">
@@ -42,7 +43,7 @@
                       type="text"
                       class="form-control"
                       id="name"
-                      v-model="form.name"
+                      v-model="name"
                     />
                   </div>
                   <div class="form-group">
@@ -51,27 +52,24 @@
                       type="text"
                       class="form-control"
                       id="middle_name"
-                      v-model="form.middle_name"
+                      v-model="middle_name"
                     />
                   </div>
                   <div class="form-group">
                     <label for="birth">Дата рождения</label>
                     <input
                       type="date"
-                      v-model="form.date"
+                      v-model="birt"
                       class="form-control"
                       id="birth"
                     />
                   </div>
-                  <div v-if="form.date.length">
+                  <div v-if="birt.length">
                     <small class="form-text text-muted">
                       Пользователю лет:
                       {{
                         new Date().getFullYear() -
-                        (form.date[0] +
-                          form.date[1] +
-                          form.date[2] +
-                          form.date[3])
+                        (birt[0] + birt[1] + birt[2] + birt[3])
                       }}
                     </small>
                   </div>
@@ -85,7 +83,11 @@
                 >
                   Отмена
                 </button>
-                <button type="button" class="btn btn-success" v-on:click="dispatched()">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  v-on:click="dispatched()"
+                >
                   Создать пользователя
                 </button>
               </div>
@@ -191,24 +193,27 @@ export default {
   data() {
     return {
       people: [],
-      form: {
-        surname: null,
-        name: null,
-        middle_name: null,
-        date: [],
-      },
+      surname: null,
+      name: null,
+      middle_name: null,
+      birt: [],
     };
   },
   mounted() {
     axios
-      .get("http://localhost:3000/api/user")
-      .then((res) => (this.people = res.data))
+      .get("http://localhost:3000/api/user/get")
+      .then((res) => (this.people = res.data));
   },
 
   methods: {
-    dispatched() {
-      axios
-        .post("http://localhost:3000/api/user", this.form)
+   async dispatched() {
+        axios.post("http://localhost:3000/api/user/create", {
+        surname: this.surname,
+        name: this.name,
+        middle_name: this.middle_name,
+        birt: this.birt,
+        age: new Date().getFullYear() - (this.birt[0] + this.birt[1] + this.birt[2] + this.birt[3]),
+      });
     },
   },
 };
