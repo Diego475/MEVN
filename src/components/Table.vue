@@ -101,7 +101,7 @@
             <th>{{ item.surname }}</th>
             <th>{{ item.name }}</th>
             <th>{{ item.middle_name }}</th>
-            <th>{{ item.birth }}</th>
+            <th>{{ item.birt }}</th>
             <th>{{ item.age }}</th>
             <th>
               <router-link to="/edit/" class="btn btn-primary">
